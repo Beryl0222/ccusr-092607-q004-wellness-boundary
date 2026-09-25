@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "疗愈服务合规边界案卷领域事件",
+  "type": "object",
+  "required": [
+    "event_id",
+    "event_type",
+    "aggregate_type",
+    "aggregate_id",
+    "occurred_at",
+    "version",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "OFFER_VERSIONED",
+        "CLAIM_SCREENED",
+        "CONSENT_RECORDED",
+        "CASE_OPENED",
+        "REMEDY_EXECUTED"
+      ]
+    },
+    "aggregate_type": {
+      "type": "string",
+      "enum": [
+        "service_provider",
+        "wellness_offer",
+        "marketing_claim",
+        "consumer_case"
+      ]
+    },
+    "aggregate_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "payload_required_by_event": {
+    "CLAIM_SCREENED": [
+      "rule_version",
+      "review_scope"
+    ],
+    "CASE_OPENED": [
+      "contract_snapshot",
+      "evidence_hashes"
+    ],
+    "REMEDY_EXECUTED": [
+      "obligor_ref",
+      "amount"
+    ]
+  },
+  "additionalProperties": false
+}

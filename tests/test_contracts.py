@@ -36,6 +36,20 @@ class ContractTests(unittest.TestCase):
         issues = validate_event(dict(self.sample, event_type="UNKNOWN"), self.schema)
         self.assertIn(("event_type", "unsupported_value"), [(x.field, x.code) for x in issues])
 
+    def test_disposition_sample_is_valid(self) -> None:
+        sample = json.loads((ROOT / "data/sample_disposition.json").read_text(encoding="utf-8"))
+        self.assertEqual([], validate_event(sample, self.schema))
+
+    def test_new_event_payloads_are_enforced(self) -> None:
+        event = dict(self.sample, event_type="REFUND_ISSUED", aggregate_type="payment", payload={"order_ref": "o-1"})
+        fields = {x.field for x in validate_event(event, self.schema)}
+        self.assertIn("payload.amount_cents", fields)
+        self.assertIn("payload.idempotency_key", fields)
+        split = dict(self.sample, event_type="COMPLAINT_SPLIT", aggregate_type="complaint", payload={"complaint_no": "TS-1"})
+        fields = {x.field for x in validate_event(split, self.schema)}
+        self.assertIn("payload.receipt_no", fields)
+        self.assertIn("payload.linked_to", fields)
+
 
 if __name__ == "__main__":
     unittest.main()

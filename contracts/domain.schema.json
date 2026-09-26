@@ -22,8 +22,18 @@
         "OFFER_VERSIONED",
         "CLAIM_SCREENED",
         "CONSENT_RECORDED",
+        "CONSENT_WITHDRAWN",
         "CASE_OPENED",
-        "REMEDY_EXECUTED"
+        "COMPLAINT_RECEIPTED",
+        "COMPLAINT_SPLIT",
+        "FUNDS_HELD",
+        "REFUND_ISSUED",
+        "DEPOSIT_DEDUCTED",
+        "DEADLINE_PAUSED",
+        "DEADLINE_RESUMED",
+        "OBLIGATION_FULFILLED",
+        "REMEDY_EXECUTED",
+        "DISPOSITION_RECORDED"
       ]
     },
     "aggregate_type": {
@@ -32,7 +42,10 @@
         "service_provider",
         "wellness_offer",
         "marketing_claim",
-        "consumer_case"
+        "consumer_case",
+        "consent",
+        "complaint",
+        "payment"
       ]
     },
     "aggregate_id": {
@@ -60,9 +73,54 @@
       "contract_snapshot",
       "evidence_hashes"
     ],
+    "CONSENT_WITHDRAWN": [
+      "consent_ref"
+    ],
+    "COMPLAINT_RECEIPTED": [
+      "complaint_no",
+      "receipt_no",
+      "fingerprint"
+    ],
+    "COMPLAINT_SPLIT": [
+      "complaint_no",
+      "receipt_no",
+      "linked_to"
+    ],
+    "FUNDS_HELD": [
+      "order_ref",
+      "amount_cents",
+      "idempotency_key"
+    ],
+    "REFUND_ISSUED": [
+      "order_ref",
+      "amount_cents",
+      "idempotency_key"
+    ],
+    "DEPOSIT_DEDUCTED": [
+      "obligor_ref",
+      "amount_cents",
+      "idempotency_key"
+    ],
+    "DEADLINE_PAUSED": [
+      "case_ref",
+      "deadline_kind"
+    ],
+    "DEADLINE_RESUMED": [
+      "case_ref",
+      "deadline_kind"
+    ],
+    "OBLIGATION_FULFILLED": [
+      "obligation_ref",
+      "obligor_ref"
+    ],
     "REMEDY_EXECUTED": [
       "obligor_ref",
       "amount"
+    ],
+    "DISPOSITION_RECORDED": [
+      "outcome",
+      "rule_version",
+      "evidence_hashes"
     ]
   },
   "additionalProperties": false

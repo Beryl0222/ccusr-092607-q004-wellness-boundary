@@ -10,4 +10,4 @@
 - `CASE_OPENED`：载荷还需包含 `contract_snapshot`, `evidence_hashes`。
 - `REMEDY_EXECUTED`：载荷还需包含 `obligor_ref`, `amount`。
 
-相同事件标识的业务幂等、冲突隔离和状态推进由上层服务负责；本仓库只定义可稳定交换的基础事实。
+相同事件标识的业务幂等、冲突隔离和状态推进由上层服务负责，见 `docs/service.md`；契约层只定义可稳定交换的基础事实。

@@ -1,5 +1,111 @@
-"""疗愈服务合规边界案卷领域契约。"""
+"""疗愈服务合规边界案卷：领域契约与案卷服务层。"""
 
+from .casefile import (
+    CaseBook,
+    CaseFile,
+    CaseStatus,
+    ChainLink,
+    Disposition,
+    Obligation,
+    ObligationKind,
+    ObligationStatus,
+    PartyRole,
+)
+from .catalog import (
+    CLAIM_RANK,
+    ClaimClass,
+    Evidence,
+    MarketingClaim,
+    OfferVersion,
+    PriceBreakdown,
+    PriceItem,
+    ProviderProfile,
+    Qualification,
+    QualificationKind,
+    claim_exceeds_license,
+    qualification_ceiling,
+)
+from .clock import ManualClock, SystemClock
+from .complaints import Complaint, ComplaintService, Receipt, complaint_fingerprint
 from .contracts import ContractIssue, validate_event
+from .deadlines import Deadline, DeadlineEngine, DeadlineKind, DeadlineStatus
+from .events import EventLog
+from .records import (
+    ConsentRecord,
+    ConsentStatus,
+    ContractChange,
+    DisputeMaterial,
+    ReferralNotice,
+    RiskScreening,
+    ServiceRecord,
+    ServiceRecordStatus,
+)
+from .remedies import RemedyKind, RemedyLedger, RemedyOperation, RemedyRecord
+from .reviews import (
+    Reviewer,
+    ReviewerRole,
+    ReviewOutcome,
+    ReviewScope,
+    submit_review,
+)
+from .rules import RuleBook, RuleSet
+from .views import consumer_view, regulator_view, trace_disposition
 
-__all__ = ["ContractIssue", "validate_event"]
+__all__ = [
+    "CLAIM_RANK",
+    "CaseBook",
+    "CaseFile",
+    "CaseStatus",
+    "ChainLink",
+    "ClaimClass",
+    "Complaint",
+    "ComplaintService",
+    "ConsentRecord",
+    "ConsentStatus",
+    "ContractChange",
+    "ContractIssue",
+    "Deadline",
+    "DeadlineEngine",
+    "DeadlineKind",
+    "DeadlineStatus",
+    "Disposition",
+    "DisputeMaterial",
+    "EventLog",
+    "Evidence",
+    "ManualClock",
+    "MarketingClaim",
+    "Obligation",
+    "ObligationKind",
+    "ObligationStatus",
+    "OfferVersion",
+    "PartyRole",
+    "PriceBreakdown",
+    "PriceItem",
+    "ProviderProfile",
+    "Qualification",
+    "QualificationKind",
+    "Receipt",
+    "ReferralNotice",
+    "RemedyKind",
+    "RemedyLedger",
+    "RemedyOperation",
+    "RemedyRecord",
+    "Reviewer",
+    "ReviewerRole",
+    "ReviewOutcome",
+    "ReviewScope",
+    "RiskScreening",
+    "RuleBook",
+    "RuleSet",
+    "ServiceRecord",
+    "ServiceRecordStatus",
+    "SystemClock",
+    "claim_exceeds_license",
+    "complaint_fingerprint",
+    "consumer_view",
+    "qualification_ceiling",
+    "regulator_view",
+    "submit_review",
+    "trace_disposition",
+    "validate_event",
+]
